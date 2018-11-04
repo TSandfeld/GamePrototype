@@ -13,7 +13,7 @@ public class ChangeScene : MonoBehaviour {
         Debug.Log("Is fired");
         if(collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene(newLevel);
+            SceneManager.LoadScene("PlatformLevel");
         }
     }
 }

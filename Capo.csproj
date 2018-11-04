@@ -330,8 +330,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ChangeScene.cs" />
     <Compile Include="Assets\Scripts\CharacterController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\PlayerPlatformController.cs" />
     <Compile Include="Assets\Scripts\WaterTile.cs" />
   </ItemGroup>
   <ItemGroup>
