@@ -10,7 +10,7 @@ public class PlayerPlatformController : MonoBehaviour
     [SerializeField]
     Transform groundCheck;
 
-    protected bool jump = false;
+    protected bool jumping = false;
     protected bool grounded = true;
 
     protected int jumpCount = 0;
@@ -33,26 +33,47 @@ public class PlayerPlatformController : MonoBehaviour
         GetInput();
     }
 
+    void LateUpdate()
+    {
+        
+    }
+
     public void GetInput()
     {
-        //float h = Input.GetAxis("Horizontal");
-
         if (Input.GetKeyDown(KeyCode.W) && (grounded || jumpCount < 2))
         {
             grounded = false;
-                
-            rb.AddForce(new Vector2(0f, 400f));
-            
-            jump = true;
+
+            //rb.AddForce(new Vector2(0f, 400f));
+            Vector3 rVel = rb.velocity;
+            rVel.y = maxSpeed * 1.2f;
+            rb.velocity = rVel;
+
+            jumping = true;
             jumpCount++;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            rb.AddForce(Vector2.left * 5f);
+            Vector3 rVel = rb.velocity;
+            rVel.x = -maxSpeed;
+            rb.velocity = rVel;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            rb.AddForce(Vector2.right * 5f);
+            Vector3 rVel = rb.velocity;
+            rVel.x = maxSpeed;
+            rb.velocity = rVel;
+        }
+        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        {
+            if (!grounded) 
+            {
+				rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, 0.1f);
+            }
+            else 
+            {
+                rb.velocity = Vector2.zero;
+            }
         }
     }
 
@@ -60,7 +81,22 @@ public class PlayerPlatformController : MonoBehaviour
     {
         if (collision.collider.CompareTag("PlatformTile")) {
             grounded = true;
+
+            if (jumping) 
+            {
+                rb.velocity = Vector2.zero;
+            }
+
             jumpCount = 0;
+            jumping = false;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("PlatformTile"))
+        {
+            grounded = false;
         }
     }
 }
