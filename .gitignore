@@ -1,3 +1,4 @@
 Temp/*
 Library/metadata/*
 Library/*.log
+Library/ShaderCache/*
