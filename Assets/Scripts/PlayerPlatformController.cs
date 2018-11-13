@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerPlatformController : MonoBehaviour
 {
     [SerializeField]
-    float maxSpeed = 5f;
+    float maxSpeed = 4f;
+    float jumpPower = 5f;
 
     [SerializeField]
     Transform groundCheck;
@@ -14,6 +15,11 @@ public class PlayerPlatformController : MonoBehaviour
     protected bool grounded = true;
 
     protected int jumpCount = 0;
+
+    bool collisionIsAbove;
+    bool collisionIsEqualLeft;
+    bool collisionIsEqualRight;
+    bool collisionIsBelow;
 
     protected Vector2 direction;
 
@@ -44,21 +50,20 @@ public class PlayerPlatformController : MonoBehaviour
         {
             grounded = false;
 
-            //rb.AddForce(new Vector2(0f, 400f));
             Vector3 rVel = rb.velocity;
-            rVel.y = maxSpeed * 1.2f;
+            rVel.y = jumpPower * 1.3f;
             rb.velocity = rVel;
 
             jumping = true;
             jumpCount++;
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && !collisionIsEqualRight && !collisionIsBelow)
         {
             Vector3 rVel = rb.velocity;
             rVel.x = -maxSpeed;
             rb.velocity = rVel;
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && !collisionIsEqualLeft && !collisionIsBelow)
         {
             Vector3 rVel = rb.velocity;
             rVel.x = maxSpeed;
@@ -79,16 +84,66 @@ public class PlayerPlatformController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("PlatformTile")) {
-            grounded = true;
+        SetCollisionBools(collision);
+        if (collision.collider.CompareTag("PlatformTile") && collisionIsAbove) {
 
-            if (jumping) 
+            if (!grounded) 
             {
                 rb.velocity = Vector2.zero;
             }
 
+            grounded = true;
+
             jumpCount = 0;
             jumping = false;
+        }
+    }
+
+    void SetCollisionBools(Collision2D collision)
+    {
+        var otherX = float.Parse(collision.otherCollider.bounds.center.x.ToString("0.00"));
+        var otherY = float.Parse(collision.otherCollider.bounds.center.y.ToString("0.00"));
+		var contactX = float.Parse(collision.contacts[0].point.x.ToString("0.00"));
+        var contactY = float.Parse(collision.contacts[0].point.y.ToString("0.00"));
+
+        //print("");
+        //print("OtherX: " + otherX);
+        //print("ContactX: " + contactX);
+        //print("OtherY: " + otherY);
+        //print("ContactY: " + contactY);
+        //print("");
+
+        if (otherY > contactY)
+        {
+            print("Above");
+            collisionIsAbove = true;
+            collisionIsEqualLeft = false;
+            collisionIsEqualRight = false;
+            collisionIsBelow = false;
+        }
+        else if (otherY.Equals(contactY) && otherX > contactX)
+        {
+            print("Right");
+            collisionIsAbove = false;
+            collisionIsEqualRight = true;
+            collisionIsEqualLeft = false;
+            collisionIsBelow = false;
+        }
+        else if (otherY.Equals(contactY) && otherX < contactX)
+        {
+            print("Left");
+            collisionIsAbove = false;
+            collisionIsEqualRight = false;
+            collisionIsEqualLeft = true;
+            collisionIsBelow = false;
+        }
+        else if (otherY < contactY)
+        {
+            print("Below");
+            collisionIsAbove = false;
+            collisionIsEqualLeft = false;
+            collisionIsEqualRight = false;
+            collisionIsBelow = true;
         }
     }
 
@@ -97,6 +152,11 @@ public class PlayerPlatformController : MonoBehaviour
         if (collision.collider.CompareTag("PlatformTile"))
         {
             grounded = false;
+
+            collisionIsAbove = false;
+            collisionIsEqualLeft = false;
+            collisionIsEqualRight = false;
+            collisionIsBelow = false;
         }
     }
 }

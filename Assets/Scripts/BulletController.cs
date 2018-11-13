@@ -23,6 +23,10 @@ public class BulletController : MonoBehaviour {
             Enemy.SendMessage("TakeDamage", 1);
             Destroy(gameObject);
         }
+        else if (collision.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
     }
 
 }
