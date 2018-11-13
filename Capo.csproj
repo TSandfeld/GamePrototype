@@ -330,17 +330,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BulletController.cs" />
-    <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\BulletController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\CameraController.cs" />
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
-    <Compile Include="Assets\Scripts\CollectItemController.cs" />
-    <Compile Include="Assets\Scripts\EnemyBulletController.cs" />
-    <Compile Include="Assets\Scripts\EnemyController.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\PlayerPlatformController.cs" />
-    <Compile Include="Assets\Scripts\ShooterController.cs" />
-    <Compile Include="Assets\Scripts\Stats.cs" />
-    <Compile Include="Assets\Scripts\WaterTile.cs" />
+    <Compile Include="Assets\Scripts\Controllers\CollectItemController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\EnemyBulletController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\PlayerPlatformController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\ShooterController.cs" />
+    <Compile Include="Assets\Scripts\UI\Stats.cs" />
+    <Compile Include="Assets\Scripts\UI\WaterTile.cs" />
+    <Compile Include="Assets\Scripts\Abstracts\PlayerAbstract.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Styles\Main_Dark.uss" />
