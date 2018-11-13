@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -10,6 +11,10 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     float speed = 5f;
 
+    private int HP = 5;
+
+    public Text displayScore;
+
     protected Vector2 direction;
 
     [SerializeField]
@@ -17,15 +22,27 @@ public class PlayerController : MonoBehaviour {
 
     Vector2 currentDirection = Vector2.up;
 
+    int playerScore = 0;
+
+    [SerializeField]
+    int totalRecipes = 50;
+
+    [SerializeField]
+    private Stats health;
+
+    private float initHealth = 100;
+
 	// Use this for initialization
 	void Start () 
     {
+        health.Initialize(initHealth, initHealth);
 		
 	}
 	
 	// Update is called once per frame
     void Update() 
     {
+        displayScore.text = playerScore.ToString() + "/" + totalRecipes.ToString();
         GetInput();
 
         Move();
@@ -73,5 +90,22 @@ public class PlayerController : MonoBehaviour {
     public void Move()
     {
         transform.Translate(direction * speed * Time.deltaTime);
+    }
+
+    void CollectItems()
+    {
+        playerScore++;
+    }
+
+    void TakeDamage(int damage)
+    {
+        health.MyCurrentValue -= damage;
+        
+
+        /*if (HP <= 0)
+        {
+            //PLAYER DEAD!!! TODO: HANDLE
+            Destroy(gameObject);
+        }*/
     }
 }

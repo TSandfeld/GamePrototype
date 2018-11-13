@@ -7,12 +7,26 @@ public class EnemyController : MonoBehaviour {
     public GameObject player;
 
     [SerializeField]
+    GameObject Bullet;
+
+    [SerializeField]
     float speed = 1f;
 
     protected Vector2 direction;
 
+    [SerializeField]
+    float BulletSpeed = 4f;
+
+    [SerializeField]
+    float MaxDistance = 5f;
+
     private bool playerDidEnter = false;
     private int HP = 3;
+
+    float timer = 0.0f;
+
+    [SerializeField]
+    int waitingTime = 2;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +38,8 @@ public class EnemyController : MonoBehaviour {
         GetDirection();
 
         Move();
+
+        PerformRangeAttack();
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -73,4 +89,27 @@ public class EnemyController : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+
+    void PerformRangeAttack()
+    {
+        timer += Time.deltaTime;
+        if(timer > waitingTime)
+        {
+            if (Vector3.Distance(transform.position, player.transform.position) <= MaxDistance)
+            {
+                Bullet.transform.position = transform.position;
+
+                var b = Instantiate(Bullet, Bullet.transform.position, Quaternion.identity);
+
+                b.GetComponent<Rigidbody2D>().velocity = (player.transform.position - transform.position) * BulletSpeed;
+
+                Destroy(b, 2.0f);
+                timer = 0;
+            }
+
+        }
+
+    }
+
+   
 }
