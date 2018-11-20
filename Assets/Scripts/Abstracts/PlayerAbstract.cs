@@ -10,10 +10,13 @@ public abstract class PlayerAbstract : MonoBehaviour
     protected float initHP = 100;
     protected static float HP = 100;
 
+    protected bool isNPCPresent = false;
+    protected Dialogue NPCDialogue;
+
 	// Use this for initialization
     protected virtual void Start()
 	{
-        //health.Initialize(initHealth, initHealth);	
+        
     }
 
     protected virtual void TakeDamage(int damage) 

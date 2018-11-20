@@ -16,7 +16,6 @@ public class EnemyBulletController : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("Hit me");
         if (collision.CompareTag("Player"))
         {
             var Player = collision.gameObject;

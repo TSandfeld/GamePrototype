@@ -58,8 +58,16 @@ public class PlayerController : PlayerAbstract {
         {
             direction += Vector2.right;
         }
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        {
             PerformRangeAttack();
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (base.isNPCPresent)
+            {
+                FindObjectOfType<DialogueManager>().StartDialogue(base.NPCDialogue);
+            }
         }
 
         if (!direction.Equals(Vector2.zero)) {
@@ -97,5 +105,15 @@ public class PlayerController : PlayerAbstract {
             //PLAYER DEAD!!! TODO: HANDLE
             Destroy(gameObject);
         }*/
+    }
+
+    protected void SetNPCPresence(bool condition)
+    {
+        base.isNPCPresent = condition;
+    }
+
+    protected void SetNPCDialogue(Dialogue dialogue)
+    {
+        base.NPCDialogue = dialogue;
     }
 }

@@ -60,18 +60,21 @@ public class PlayerPlatformController : PlayerAbstract
             jumping = true;
             jumpCount++;
         }
+
         if (Input.GetKey(KeyCode.A) && !collisionIsEqualRight && !collisionIsBelow)
         {
             Vector3 rVel = rb.velocity;
             rVel.x = -maxSpeed;
             rb.velocity = rVel;
         }
+
         if (Input.GetKey(KeyCode.D) && !collisionIsEqualLeft && !collisionIsBelow)
         {
             Vector3 rVel = rb.velocity;
             rVel.x = maxSpeed;
             rb.velocity = rVel;
         }
+
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
         {
             if (!grounded) 
@@ -81,6 +84,14 @@ public class PlayerPlatformController : PlayerAbstract
             else 
             {
                 rb.velocity = Vector2.zero;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (base.isNPCPresent)
+            {
+                FindObjectOfType<DialogueManager>().StartDialogue(base.NPCDialogue);
             }
         }
     }
@@ -119,13 +130,6 @@ public class PlayerPlatformController : PlayerAbstract
         var otherY = float.Parse(collision.otherCollider.bounds.center.y.ToString("0.00"));
 		var contactX = float.Parse(collision.contacts[0].point.x.ToString("0.00"));
         var contactY = float.Parse(collision.contacts[0].point.y.ToString("0.00"));
-
-        //print("");
-        //print("OtherX: " + otherX);
-        //print("ContactX: " + contactX);
-        //print("OtherY: " + otherY);
-        //print("ContactY: " + contactY);
-        //print("");
 
         if (otherY > contactY)
         {
@@ -172,5 +176,15 @@ public class PlayerPlatformController : PlayerAbstract
             collisionIsEqualRight = false;
             collisionIsBelow = false;
         }
+    }
+
+    protected void SetNPCPresence(bool condition)
+    {
+        base.isNPCPresent = condition;
+    }
+
+    protected void SetNPCDialogue(Dialogue dialogue)
+    {
+        base.NPCDialogue = dialogue;
     }
 }
