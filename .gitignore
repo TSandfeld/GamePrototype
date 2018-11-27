@@ -3,3 +3,4 @@ Library/metadata/*
 Library/*.log
 Library/ShaderCache/*
 Library/*.dwlt
+Library/expandedItems

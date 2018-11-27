@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{8F100799-F525-6A03-108C-A997184C4DEE}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UI/Dialog/DialogueManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/UI/Dialog/DialogueManager.cs" Line="74" Column="29" />
+      <File FileName="Assets/Scripts/UI/Dialog/DialogueManager.cs" Line="62" Column="46" />
       <File FileName="Assets/Scripts/UI/Dialog/Dialogue.cs" Line="11" Column="31" />
       <File FileName="Assets/Scripts/UI/Dialog/DialogueTrigger.cs" Line="27" Column="60" />
       <File FileName="Assets/Scripts/Controllers/PlayerController.cs" Line="65" Column="9" />
