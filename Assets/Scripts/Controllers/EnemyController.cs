@@ -10,6 +10,9 @@ public class EnemyController : MonoBehaviour {
     GameObject Bullet;
 
     [SerializeField]
+    GameObject ItemDrop;
+
+    [SerializeField]
     float speed = 1f;
 
     protected Vector2 direction;
@@ -21,17 +24,24 @@ public class EnemyController : MonoBehaviour {
     float MaxDistance = 5f;
 
     private bool playerDidEnter = false;
-    private int HP = 3;
+    private int initHp = 100;
+    private int HP = 100;
 
     float timer = 0.0f;
 
     [SerializeField]
     int waitingTime = 2;
 
-	// Use this for initialization
-	void Start () {
-        
-	}
+    [SerializeField]
+    Stats health;
+
+    
+    
+
+    // Use this for initialization
+    void Start () {
+        health.Initialize(HP, initHp);
+    }
 	
 	// Update is called once per frame
     void Update () {
@@ -83,10 +93,15 @@ public class EnemyController : MonoBehaviour {
     }
 
     void TakeDamage(int damage) {
+
         HP -= damage;
+        health.MyCurrentValue = HP;
+        print(HP);
 
         if (HP <= 0) {
             Destroy(gameObject);
+            ItemDrop.transform.position = transform.position;
+            Instantiate(ItemDrop, ItemDrop.transform.position, Quaternion.identity);
         }
     }
 
