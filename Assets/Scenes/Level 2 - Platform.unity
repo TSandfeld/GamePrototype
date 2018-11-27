@@ -501,12 +501,12 @@ Prefab:
     - target: {fileID: 114893104860923430, guid: 33be6a01f1dda4c7f9fac417984eb22f,
         type: 2}
       propertyPath: dialogue.name
-      value: Fake Finland
+      value: Milli Milfyson
       objectReference: {fileID: 0}
     - target: {fileID: 114893104860923430, guid: 33be6a01f1dda4c7f9fac417984eb22f,
         type: 2}
       propertyPath: dialogue.sentences.Array.data[0]
-      value: Hey, i'm totally Finland ... *cough* *cough*
+      value: Hey, i'm Milli ... *cough* *cough*
       objectReference: {fileID: 0}
     - target: {fileID: 114893104860923430, guid: 33be6a01f1dda4c7f9fac417984eb22f,
         type: 2}
@@ -520,6 +520,12 @@ Prefab:
 
 '
       objectReference: {fileID: 0}
+    - target: {fileID: 212479928525582840, guid: 33be6a01f1dda4c7f9fac417984eb22f,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300006, guid: 97b8020509442439ebc976e70b6f0f3b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33be6a01f1dda4c7f9fac417984eb22f, type: 2}
   m_IsPrefabAsset: 0
@@ -1552,7 +1558,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 3987f2dd4b7694e999fa24b3444657a2, type: 3}
+  m_Sprite: {fileID: 21300022, guid: e1739bb00209a4fb9ae381d41036d5b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
