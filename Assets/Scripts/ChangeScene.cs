@@ -13,7 +13,11 @@ public class ChangeScene : MonoBehaviour {
         Debug.Log("Is fired");
         if(collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene(newLevel);
+            SwitchScenes(newLevel);
         }
+    }
+
+    public void SwitchScenes(string sceneName) {
+        SceneManager.LoadScene(newLevel);
     }
 }

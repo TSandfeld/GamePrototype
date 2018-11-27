@@ -11,6 +11,8 @@ public class PlayerController : PlayerAbstract {
     [SerializeField]
     float speed = 5f;
 
+    private Animator animator;
+
     public Text displayScore;
 
     [SerializeField]
@@ -27,6 +29,7 @@ public class PlayerController : PlayerAbstract {
     protected override void Start () 
     {
         health.Initialize(base.GetHP(), base.initHP);
+        animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -88,6 +91,15 @@ public class PlayerController : PlayerAbstract {
     public void Move()
     {
         transform.Translate(direction * speed * Time.deltaTime);
+
+        if (!direction.x.Equals(0f) || !direction.y.Equals(0f))
+        {
+			AnimateMovement(direction);         
+        } else 
+        {
+            animator.SetLayerWeight(1, 0);
+        }
+
     }
 
     void CollectItems()
@@ -115,5 +127,13 @@ public class PlayerController : PlayerAbstract {
     protected void SetNPCDialogue(Dialogue dialogue)
     {
         base.NPCDialogue = dialogue;
+    }
+
+    protected void AnimateMovement(Vector2 direction) 
+    {
+        animator.SetLayerWeight(1, 1);
+
+        animator.SetFloat("x", direction.x);
+        animator.SetFloat("y", direction.y);
     }
 }

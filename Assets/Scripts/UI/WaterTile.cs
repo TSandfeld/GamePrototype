@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 
 public class WaterTile : Tile
 {
+
     /// <summary>
     /// An array with all the waterTiles that we have in our game
     /// </summary>
@@ -75,6 +76,7 @@ public class WaterTile : Tile
         if (randomVal < 15)
         {
             tileData.sprite = waterSprites[46];
+
         }
         else if (randomVal >= 15 && randomVal < 35)
         {
@@ -279,7 +281,6 @@ public class WaterTile : Tile
     {
         return tilemap.GetTile(position) == this;
     }
-
 
 #if UNITY_EDITOR
     [MenuItem("Assets/Create/Tiles/WaterTile")]
