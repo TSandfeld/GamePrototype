@@ -94,12 +94,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35852b47e9e1a480ba93c503da71af00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1670810074033820, guid: ee7a39d394fcaf64f8a15193d4c37c45, type: 2}
   Bullet: {fileID: 1331430743373758, guid: 82efe37901429fd44942fb7405c7a405, type: 2}
+  ItemDrop: {fileID: 1400027438493676, guid: 3a680cfa3e52df749a0442ed5940da98, type: 2}
   speed: 1
   BulletSpeed: 5
   MaxDistance: 4
   waitingTime: 2
+  health: {fileID: 0}
 --- !u!212 &212318936681484648
 SpriteRenderer:
   m_ObjectHideFlags: 1
