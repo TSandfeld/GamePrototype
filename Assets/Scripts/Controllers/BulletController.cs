@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour {
 
+    [SerializeField]
+    private int playerDealDamage;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -20,7 +23,7 @@ public class BulletController : MonoBehaviour {
         if (collision.CompareTag("Enemy") && collision.GetType().Equals(typeof(BoxCollider2D))) {
             var Enemy = collision.gameObject;
 
-            Enemy.SendMessage("TakeDamage", 1);
+            Enemy.SendMessage("TakeDamage", playerDealDamage);
             Destroy(gameObject);
         }
     }

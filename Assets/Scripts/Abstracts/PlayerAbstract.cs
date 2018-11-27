@@ -29,6 +29,7 @@ public abstract class PlayerAbstract : MonoBehaviour
         playerScore++;
     }
 
+
     protected string GetScoreText() 
     {
         return playerScore.ToString() + "/" + totalRecipes.ToString();

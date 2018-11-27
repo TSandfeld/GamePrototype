@@ -107,6 +107,13 @@ public class PlayerController : PlayerAbstract {
         base.CollectItem();
     }
 
+    IEnumerator CollectTreasure()
+    {
+        speed = speed * 2;
+        yield return new WaitForSeconds(5.0f);
+        speed = speed / 2;
+    }
+
     protected override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
