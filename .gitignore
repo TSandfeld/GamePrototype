@@ -4,3 +4,4 @@ Library/*.log
 Library/ShaderCache/*
 Library/*.dwlt
 Library/expandedItems
+Library/EditorInstance.json
