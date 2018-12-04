@@ -23,6 +23,7 @@ public class OOBColliderController : MonoBehaviour {
         {
             var player = collision.gameObject;
             player.transform.position = returnPosition;
+            player.SendMessage("ResetPlayerAndHealth");
         }
     }
 }

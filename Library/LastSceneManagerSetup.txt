@@ -1,10 +1,19 @@
 sceneSetups:
 - path: Assets/Scenes/Start Screen.unity
-  isLoaded: 1
-  isActive: 1
-- path: Assets/Scenes/Level 1.unity
   isLoaded: 0
   isActive: 0
+- path: Assets/Scenes/Level 1.unity
+  isLoaded: 1
+  isActive: 1
 - path: Assets/Scenes/Level 2 - Platform.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scenes/Level 3 - platform.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scenes/Dead Scene.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scenes/Win Scene.unity
   isLoaded: 0
   isActive: 0

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyBulletController : MonoBehaviour {
 
+    public int bulletDmg = 5;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -20,8 +22,8 @@ public class EnemyBulletController : MonoBehaviour {
         {
             var Player = collision.gameObject;
 
-            Player.SendMessage("TakeDamage", 5);
-            Destroy(gameObject);
+            Player.SendMessage("TakeDamage", bulletDmg);
+			Destroy(gameObject);
         }
     }
 }

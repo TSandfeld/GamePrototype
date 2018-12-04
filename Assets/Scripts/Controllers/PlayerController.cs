@@ -21,7 +21,7 @@ public class PlayerController : PlayerAbstract {
     protected Vector2 direction;
 
     [SerializeField]
-    float BulletSpeed = 5f;
+    float BulletSpeed = 8f;
 
     Vector2 currentDirection = Vector2.up;
 
@@ -119,11 +119,13 @@ public class PlayerController : PlayerAbstract {
         base.TakeDamage(damage);
         health.MyCurrentValue = base.GetHP();
 
-        /*if (HP <= 0)
+        if (HP <= 0)
         {
             //PLAYER DEAD!!! TODO: HANDLE
-            Destroy(gameObject);
-        }*/
+            //Destroy(gameObject);
+            base.ResetHP();
+            new ChangeScene().SwitchScenes("Dead Scene");
+        }
     }
 
     protected void SetNPCPresence(bool condition)

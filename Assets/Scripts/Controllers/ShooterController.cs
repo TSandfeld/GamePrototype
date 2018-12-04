@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShooterController : MonoBehaviour {
 
     [SerializeField]
-    GameObject bullet;
+    EnemyBulletController bullet;
 
     protected Vector2 currentDirection;
 
@@ -33,11 +33,14 @@ public class ShooterController : MonoBehaviour {
     void PerformRangeAttack()
     {
         bullet.transform.position = transform.position;
+        bullet.bulletDmg = 20;
 
+        var pos = bullet.transform.position;
         var b = Instantiate(bullet, bullet.transform.position, Quaternion.identity);
+
 
         b.GetComponent<Rigidbody2D>().velocity = currentDirection * bulletSpeed;
 
-        Destroy(b, 1.0f);
+        Destroy(b.gameObject, 1.0f);
     }
 }

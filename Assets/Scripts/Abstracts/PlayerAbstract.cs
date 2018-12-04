@@ -5,7 +5,7 @@ public abstract class PlayerAbstract : MonoBehaviour
 {
     static int playerScore = 0;
 
-    int totalRecipes = 50;
+    int totalRecipes = 22;
 
     protected float initHP = 100;
     protected static float HP = 100;
@@ -24,9 +24,20 @@ public abstract class PlayerAbstract : MonoBehaviour
         HP -= damage;
     }
 
+    protected void ResetHP() 
+    {
+        HP = 100;
+    }
+
     protected void CollectItem() 
     {
         playerScore++;
+
+        if (playerScore.Equals(totalRecipes))
+        {
+            // Win condition met
+            new ChangeScene().SwitchScenes("Win Scene");
+        }
     }
 
 

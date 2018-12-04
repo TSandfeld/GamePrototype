@@ -33,6 +33,8 @@ public class PlayerPlatformController : PlayerAbstract
 
     protected Vector2 direction;
 
+    protected Vector2 startPosition;
+
     private Rigidbody2D rb;
 
     // Use this for initialization
@@ -41,6 +43,8 @@ public class PlayerPlatformController : PlayerAbstract
 		rb = GetComponent<Rigidbody2D>();
         health.Initialize(base.GetHP(), base.initHP);
         animator = GetComponent<Animator>();
+
+        startPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -64,7 +68,7 @@ public class PlayerPlatformController : PlayerAbstract
             jumpCount++;
         }
 
-        if (Input.GetKey(KeyCode.A) && !collisionIsEqualRight && !collisionIsBelow)
+        if (Input.GetKey(KeyCode.A) && !collisionIsEqualRight)// && !collisionIsBelow)
         {
             Vector3 rVel = rb.velocity;
             rVel.x = -maxSpeed;
@@ -74,7 +78,7 @@ public class PlayerPlatformController : PlayerAbstract
             Move();
         }
 
-        if (Input.GetKey(KeyCode.D) && !collisionIsEqualLeft && !collisionIsBelow)
+        if (Input.GetKey(KeyCode.D) && !collisionIsEqualLeft)// && !collisionIsBelow)
         {
             Vector3 rVel = rb.velocity;
             rVel.x = maxSpeed;
@@ -116,12 +120,26 @@ public class PlayerPlatformController : PlayerAbstract
     {
         base.TakeDamage(damage);
         health.MyCurrentValue = base.GetHP();
+
+        if (HP <= 0)
+        {
+            //PLAYER DEAD!
+            ResetPlayerAndHealth();
+        }
+    }
+
+    protected void ResetPlayerAndHealth() 
+    {
+        health.Initialize(100, base.initHP);
+        base.ResetHP();
+        transform.position = startPosition;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         SetCollisionBools(collision);
-        if (collision.collider.CompareTag("PlatformTile") && collisionIsAbove) {
+        if (collision.collider.CompareTag("PlatformTile"))// && collisionIsAbove) 
+        {
 
             if (!grounded) 
             {
@@ -142,6 +160,12 @@ public class PlayerPlatformController : PlayerAbstract
 		var contactX = float.Parse(collision.contacts[0].point.x.ToString("0.00"));
         var contactY = float.Parse(collision.contacts[0].point.y.ToString("0.00"));
 
+        print("otherX = " + otherX);
+        print("otherY = " + otherY);
+        print("contactX = " + contactX);
+        print("contactY = " + contactY);
+
+
         if (otherY > contactY)
         {
             print("Above");
@@ -152,27 +176,27 @@ public class PlayerPlatformController : PlayerAbstract
         }
         else if (otherY.Equals(contactY) && otherX > contactX)
         {
-            print("Right");
-            collisionIsAbove = false;
-            collisionIsEqualRight = true;
-            collisionIsEqualLeft = false;
-            collisionIsBelow = false;
+            //print("Right");
+            //collisionIsAbove = false;
+            //collisionIsEqualRight = true;
+            //collisionIsEqualLeft = false;
+            //collisionIsBelow = false;
         }
         else if (otherY.Equals(contactY) && otherX < contactX)
         {
-            print("Left");
-            collisionIsAbove = false;
-            collisionIsEqualRight = false;
-            collisionIsEqualLeft = true;
-            collisionIsBelow = false;
+            //print("Left");
+            //collisionIsAbove = false;
+            //collisionIsEqualRight = false;
+            //collisionIsEqualLeft = true;
+            //collisionIsBelow = false;
         }
         else if (otherY < contactY)
         {
-            print("Below");
-            collisionIsAbove = false;
-            collisionIsEqualLeft = false;
-            collisionIsEqualRight = false;
-            collisionIsBelow = true;
+            //print("Below");
+            //collisionIsAbove = false;
+            //collisionIsEqualLeft = false;
+            //collisionIsEqualRight = false;
+            //collisionIsBelow = true;
         }
     }
 
