@@ -400,6 +400,7 @@
     <Compile Include="Assets\Scripts\Controllers\EnemyBulletController.cs" />
     <Compile Include="Assets\Scripts\Controllers\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Controllers\ItemDropController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\OOBColliderController.cs" />
     <Compile Include="Assets\Scripts\Controllers\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Controllers\PlayerPlatformController.cs" />
     <Compile Include="Assets\Scripts\Controllers\ShooterController.cs" />

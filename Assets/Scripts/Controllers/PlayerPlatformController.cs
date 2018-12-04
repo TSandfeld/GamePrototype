@@ -19,6 +19,8 @@ public class PlayerPlatformController : PlayerAbstract
     [SerializeField]
     Transform groundCheck;
 
+    Animator animator;
+
     protected bool jumping = false;
     protected bool grounded = true;
 
@@ -38,6 +40,7 @@ public class PlayerPlatformController : PlayerAbstract
     {
 		rb = GetComponent<Rigidbody2D>();
         health.Initialize(base.GetHP(), base.initHP);
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -66,6 +69,9 @@ public class PlayerPlatformController : PlayerAbstract
             Vector3 rVel = rb.velocity;
             rVel.x = -maxSpeed;
             rb.velocity = rVel;
+
+            direction = Vector2.left;
+            Move();
         }
 
         if (Input.GetKey(KeyCode.D) && !collisionIsEqualLeft && !collisionIsBelow)
@@ -73,6 +79,9 @@ public class PlayerPlatformController : PlayerAbstract
             Vector3 rVel = rb.velocity;
             rVel.x = maxSpeed;
             rb.velocity = rVel;
+
+            direction = Vector2.right;
+            Move();
         }
 
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
@@ -85,6 +94,8 @@ public class PlayerPlatformController : PlayerAbstract
             {
                 rb.velocity = Vector2.zero;
             }
+			direction = Vector2.zero;
+            Move();
         }
 
         if (Input.GetKeyDown(KeyCode.F))
@@ -186,5 +197,25 @@ public class PlayerPlatformController : PlayerAbstract
     protected void SetNPCDialogue(Dialogue dialogue)
     {
         base.NPCDialogue = dialogue;
+    }
+
+    protected void Move()
+    {
+        if (!direction.x.Equals(0f))
+        {
+            AnimateMovement();
+        }
+        else
+        {
+            animator.SetLayerWeight(1, 0);
+        }
+
+    }
+
+    protected void AnimateMovement() 
+    {
+        animator.SetLayerWeight(1, 1);
+
+        animator.SetFloat("x", direction.x);
     }
 }
