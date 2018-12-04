@@ -5,3 +5,4 @@ Library/ShaderCache/*
 Library/*.dwlt
 Library/expandedItems
 Library/EditorInstance.json
+.vs/*
