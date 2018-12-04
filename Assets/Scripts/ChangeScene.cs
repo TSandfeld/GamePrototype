@@ -8,6 +8,8 @@ public class ChangeScene : MonoBehaviour {
     [SerializeField]
     private string newLevel;
 
+    private Scene level1;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Is fired");
@@ -19,5 +21,10 @@ public class ChangeScene : MonoBehaviour {
 
     public void SwitchScenes(string sceneName) {
         SceneManager.LoadScene(newLevel);
+
+        if (SceneManager.GetActiveScene().name.Equals("Level 1"))
+        {
+            level1 = SceneManager.GetActiveScene();
+        }
     }
 }
