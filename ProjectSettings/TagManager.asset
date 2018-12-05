@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - PlatformTile
   - NPC
+  - Pickups
   layers:
   - Default
   - TransparentFX

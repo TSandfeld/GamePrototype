@@ -223,6 +223,24 @@ public class PlayerPlatformController : PlayerAbstract
         base.NPCDialogue = dialogue;
     }
 
+    protected void GetCurrentPlayerScoreLvl2(GameObject changeScene) 
+    {
+        if (base.GetPlayerScore().Equals(base.GetLvl2RequiredRecipes()))
+        {
+			changeScene.SendMessage("SetLvl2Done");
+        }
+    }
+
+    protected void GetCurrentPlayerScoreLvl3(GameObject changeScene)
+    {
+        print(base.GetPlayerScore() + " player score");
+        print(base.GetLvl3RequiredRecipes() + " req");
+        if (base.GetPlayerScore().Equals(base.GetLvl3RequiredRecipes()))
+        {
+            changeScene.SendMessage("SetLvl3Done");
+        }
+    }
+
     protected void Move()
     {
         if (!direction.x.Equals(0f))

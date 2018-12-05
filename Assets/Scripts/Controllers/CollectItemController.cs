@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CollectItemController : MonoBehaviour {
 
@@ -20,7 +21,15 @@ public class CollectItemController : MonoBehaviour {
         {
             var Player = collision.gameObject;
 
-            Player.SendMessage("CollectItems", 1);
+            if (SceneManager.GetActiveScene().name.Equals("Level 1"))
+            {
+				Player.SendMessage("CollectItems", int.Parse(gameObject.name));
+            } 
+            else 
+            {
+                Player.SendMessage("CollectItems");    
+            }
+
             Destroy(gameObject);
         }
     }

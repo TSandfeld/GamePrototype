@@ -31,6 +31,33 @@ public class PlayerController : PlayerAbstract {
         health.Initialize(base.GetHP(), base.initHP);
         animator = GetComponent<Animator>();
 	}
+
+    private void Awake()
+    {
+        if (base.GetPlayerScore() < 1)
+        {
+            print(base.pickUps);
+            base.pickUps = GameObject.FindGameObjectWithTag("Pickups");
+            for (var i = 0; i < base.GetLvl1RecipesCount(); i++)
+            {
+                var pickup = base.pickUps.transform.GetChild(i).gameObject;
+                
+                pickup.name = i.ToString();
+                pickup.SetActive(true);
+                base.GetCollected()[i] = false;
+            }
+        } else {
+            print("Pickups are set. Reloading pos.");
+            base.pickUps = GameObject.FindGameObjectWithTag("Pickups");
+            for (var i = 0; i < base.GetLvl1RecipesCount(); i++)
+            {
+                var pickup = base.pickUps.transform.GetChild(i).gameObject;
+                pickup.name = i.ToString();
+                pickup.SetActive(!base.GetCollected()[i]);
+            }
+        }
+
+    }
 	
 	// Update is called once per frame
     void Update() 
@@ -102,8 +129,10 @@ public class PlayerController : PlayerAbstract {
 
     }
 
-    void CollectItems()
+    void CollectItems(int id)
     {
+        print("Collected item with id: " + id);
+        base.GetCollected()[id] = true;
         base.CollectItem();
     }
 
@@ -136,6 +165,16 @@ public class PlayerController : PlayerAbstract {
     protected void SetNPCDialogue(Dialogue dialogue)
     {
         base.NPCDialogue = dialogue;
+    }
+
+    protected void SetRequiredLvl2Count() 
+    {
+        base.SetLvl2RequiredRecipes(base.GetPlayerScore() + base.GetLvl2RecipesCount());
+    }
+
+    protected void SetRequiredLvl3Count()
+    {
+        base.SetLvl3RequiredRecipes(base.GetPlayerScore() + base.GetLvl3RecipesCount());
     }
 
     protected void AnimateMovement(Vector2 direction) 
