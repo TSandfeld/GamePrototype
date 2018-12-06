@@ -9,6 +9,9 @@ TagManager:
   - PlatformTile
   - NPC
   - Pickups
+  - Entrance - Lvl 2
+  - Entrance - Lvl 3
+  - Entrance - Closed
   layers:
   - Default
   - TransparentFX

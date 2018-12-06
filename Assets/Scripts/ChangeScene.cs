@@ -62,7 +62,6 @@ public class ChangeScene : MonoBehaviour {
 
     public void SetLvl3Done()
     {
-        print("Lvl 3 is done.");
         lvl3Done = true;
     }
 

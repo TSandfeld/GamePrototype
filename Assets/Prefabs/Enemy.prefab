@@ -74,7 +74,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.22}
+    oldSize: {x: 0.7111111, y: 0.9777778}
     newSize: {x: 0.85333335, y: 0.85333335}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1670810074033820, guid: ee7a39d394fcaf64f8a15193d4c37c45, type: 2}
-  Bullet: {fileID: 1331430743373758, guid: 82efe37901429fd44942fb7405c7a405, type: 2}
+  Bullet: {fileID: 114267709712028044, guid: 82efe37901429fd44942fb7405c7a405, type: 2}
   ItemDrop: {fileID: 1400027438493676, guid: 3a680cfa3e52df749a0442ed5940da98, type: 2}
   speed: 1
   BulletSpeed: 5

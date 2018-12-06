@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour {
     public GameObject player;
 
     [SerializeField]
-    GameObject Bullet;
+    EnemyBulletController Bullet;
 
     [SerializeField]
     GameObject ItemDrop;
@@ -113,6 +113,7 @@ public class EnemyController : MonoBehaviour {
             if (Vector3.Distance(transform.position, player.transform.position) <= MaxDistance)
             {
                 Bullet.transform.position = transform.position;
+                Bullet.bulletDmg = 5;
 
                 var b = Instantiate(Bullet, Bullet.transform.position, Quaternion.identity);
 

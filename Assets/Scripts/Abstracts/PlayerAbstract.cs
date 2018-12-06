@@ -8,10 +8,15 @@ public abstract class PlayerAbstract : MonoBehaviour
     int totalRecipes = 22;
     static int lvl1Recipes = 8;
     static int lvl2Recipes = 8;
-    static int lvl3Recipes = 1;
+    static int lvl3Recipes = 6;
 
     static int lvl2RequiredRecipes;
     static int lvl3RequiredRecipes;
+
+    static Vector2 mapSpawnPos = new Vector2(-0.68f, -2f);
+    static Vector2 lvl2ReturnPos = new Vector2(64.72f, 91.12f);
+    static Vector2 lvl3ReturnPos = new Vector2(-40.55f, 3.7f);
+    static Vector2 curSpawnPos = mapSpawnPos;
 
     protected float initHP = 100;
     protected static float HP = 100;
@@ -26,6 +31,31 @@ public abstract class PlayerAbstract : MonoBehaviour
     protected virtual void Start()
 	{
         
+    }
+
+    protected Vector2 GetMapSpawnPos() 
+    {
+        return mapSpawnPos;
+    }
+
+    protected Vector2 GetLvl2ReturnPos()
+    {
+        return lvl2ReturnPos;
+    }
+
+    protected Vector2 GetLvl3ReturnPos()
+    {
+        return lvl3ReturnPos;
+    }
+
+    protected Vector2 GetCurSpawnPos()
+    {
+        return curSpawnPos;
+    }
+
+    protected void SetCurSpawnPos(Vector2 pos)
+    {
+        curSpawnPos = pos;
     }
 
     protected void SetLvl2RequiredRecipes(int count) 

@@ -30,10 +30,15 @@ public class PlayerController : PlayerAbstract {
     {
         health.Initialize(base.GetHP(), base.initHP);
         animator = GetComponent<Animator>();
+        transform.position = base.GetCurSpawnPos();
 	}
 
     private void Awake()
     {
+        // Set Spawn Position
+        transform.position = base.GetCurSpawnPos();
+
+        // Map positions of scrolls
         if (base.GetPlayerScore() < 1)
         {
             print(base.pickUps);
@@ -57,6 +62,29 @@ public class PlayerController : PlayerAbstract {
             }
         }
 
+        // Check entrances
+        if (base.GetLvl3RequiredRecipes() > 0) 
+        {
+            print("lvl 3 completed - hiding entrance");
+
+            var entrance = GameObject.FindGameObjectWithTag("Entrance - Lvl 3");
+            entrance.GetComponent<BoxCollider2D>().enabled = false;
+
+            var closedEntranceSprite = GameObject.FindGameObjectWithTag("Entrance - Closed");
+
+            entrance.GetComponent<SpriteRenderer>().sprite = closedEntranceSprite.GetComponent<SpriteRenderer>().sprite;
+        } 
+        if (base.GetLvl2RequiredRecipes() > 0) 
+        {
+            print("lvl 2 completed - hiding entrance");
+
+            var entrance = GameObject.FindGameObjectWithTag("Entrance - Lvl 2");
+            entrance.GetComponent<BoxCollider2D>().enabled = false;
+
+            var closedEntranceSprite = GameObject.FindGameObjectWithTag("Entrance - Closed");
+
+            entrance.GetComponent<SpriteRenderer>().sprite = closedEntranceSprite.GetComponent<SpriteRenderer>().sprite;
+        }
     }
 	
 	// Update is called once per frame
@@ -153,6 +181,7 @@ public class PlayerController : PlayerAbstract {
             //PLAYER DEAD!!! TODO: HANDLE
             //Destroy(gameObject);
             base.ResetHP();
+            base.SetCurSpawnPos(base.GetMapSpawnPos());
             new ChangeScene().SwitchScenes("Dead Scene");
         }
     }
@@ -170,11 +199,13 @@ public class PlayerController : PlayerAbstract {
     protected void SetRequiredLvl2Count() 
     {
         base.SetLvl2RequiredRecipes(base.GetPlayerScore() + base.GetLvl2RecipesCount());
+        base.SetCurSpawnPos(base.GetLvl2ReturnPos());
     }
 
     protected void SetRequiredLvl3Count()
     {
         base.SetLvl3RequiredRecipes(base.GetPlayerScore() + base.GetLvl3RecipesCount());
+        base.SetCurSpawnPos(base.GetLvl3ReturnPos());
     }
 
     protected void AnimateMovement(Vector2 direction) 

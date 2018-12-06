@@ -225,7 +225,7 @@ public class PlayerPlatformController : PlayerAbstract
 
     protected void GetCurrentPlayerScoreLvl2(GameObject changeScene) 
     {
-        if (base.GetPlayerScore().Equals(base.GetLvl2RequiredRecipes()))
+        if (base.GetPlayerScore() >= base.GetLvl2RequiredRecipes())
         {
 			changeScene.SendMessage("SetLvl2Done");
         }
@@ -233,9 +233,7 @@ public class PlayerPlatformController : PlayerAbstract
 
     protected void GetCurrentPlayerScoreLvl3(GameObject changeScene)
     {
-        print(base.GetPlayerScore() + " player score");
-        print(base.GetLvl3RequiredRecipes() + " req");
-        if (base.GetPlayerScore().Equals(base.GetLvl3RequiredRecipes()))
+        if (base.GetPlayerScore() >= base.GetLvl3RequiredRecipes() )
         {
             changeScene.SendMessage("SetLvl3Done");
         }

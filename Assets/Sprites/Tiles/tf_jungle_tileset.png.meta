@@ -4,6 +4,7 @@ TextureImporter:
   fileIDToRecycleName:
     21300000: tf_jungle_tileset_0
     21300002: tf_jungle_tileset_1
+    21300004: tf_jungle_tileset_2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -94,7 +95,7 @@ TextureImporter:
         width: 46
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -114,13 +115,33 @@ TextureImporter:
         width: 47
         height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 9869d08ebb2654764a44b1363cf971bc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tf_jungle_tileset_2
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 166
+        width: 37
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c9bdf4c5a3704ab59190c723e0f462b
       vertices: []
       indices: 
       edges: []
