@@ -30,7 +30,12 @@ public class PlayerController : PlayerAbstract {
     {
         health.Initialize(base.GetHP(), base.initHP);
         animator = GetComponent<Animator>();
+
+        // Set player position
         transform.position = base.GetCurSpawnPos();
+
+        // Set camera to update player positiion
+        Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
 	}
 
     private void Awake()
