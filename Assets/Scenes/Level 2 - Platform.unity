@@ -645,12 +645,12 @@ Prefab:
     - target: {fileID: 114893104860923430, guid: 33be6a01f1dda4c7f9fac417984eb22f,
         type: 2}
       propertyPath: dialogue.name
-      value: Milli Milfyson
+      value: Mira Tisu
       objectReference: {fileID: 0}
     - target: {fileID: 114893104860923430, guid: 33be6a01f1dda4c7f9fac417984eb22f,
         type: 2}
       propertyPath: dialogue.sentences.Array.data[0]
-      value: Hey, i'm Milli ... *cough* *cough*
+      value: Hey, i'm Mira!
       objectReference: {fileID: 0}
     - target: {fileID: 114893104860923430, guid: 33be6a01f1dda4c7f9fac417984eb22f,
         type: 2}
@@ -660,7 +660,8 @@ Prefab:
     - target: {fileID: 114893104860923430, guid: 33be6a01f1dda4c7f9fac417984eb22f,
         type: 2}
       propertyPath: dialogue.sentences.Array.data[2]
-      value: 'So yeah ... you can just go on now ...
+      value: 'By the way, there''s a bunch of cannons in here ... someone must be
+        guarding something.
 
 '
       objectReference: {fileID: 0}
@@ -2190,7 +2191,7 @@ Transform:
   - {fileID: 416945267}
   - {fileID: 189941149}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &772793897
 Prefab:
